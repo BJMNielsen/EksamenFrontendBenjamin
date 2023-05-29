@@ -1,0 +1,11 @@
+@font-face {
+    font-family: Epil;
+}
+
+.nav-link{
+    font-size: 10px;
+}
+
+.navbar{
+    width: 100%;
+}

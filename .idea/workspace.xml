@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f24e2da-088d-4242-aa91-b8a207010e76" name="Changes" comment="" />
+    <list default="true" id="7f24e2da-088d-4242-aa91-b8a207010e76" name="Changes" comment="3">
+      <change afterPath="$PROJECT_DIR$/css/navnbarFont.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EksamenFrontendBenjamin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EksamenFrontendBenjamin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/test.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2QSYGysPH3czSAcUppWZdUHkG7V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -15,12 +44,31 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/admin/Documents/Datamatiker/3 semester/Programmering/EksamenFrontendBenjamin/EksamenFrontendBenjamin/css",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Documents\Datamatiker\3 semester\Programmering\EksamenFrontendBenjamin\EksamenFrontendBenjamin\css" />
+      <recent name="C:\Users\admin\Documents\Datamatiker\3 semester\Programmering\EksamenFrontendBenjamin\EksamenFrontendBenjamin\html" />
+      <recent name="C:\Users\admin\Documents\Datamatiker\3 semester\Programmering\EksamenFrontendBenjamin\EksamenFrontendBenjamin\javascript" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Documents\Datamatiker\3 semester\Programmering\EksamenFrontendBenjamin\EksamenFrontendBenjamin\javascript" />
+      <recent name="C:\Users\admin\Documents\Datamatiker\3 semester\Programmering\EksamenFrontendBenjamin\EksamenFrontendBenjamin\html" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -29,8 +77,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685348357736</updated>
-      <workItem from="1685348359146" duration="1000" />
+      <workItem from="1685348359146" duration="4373000" />
     </task>
+    <task id="LOCAL-00001" summary="2">
+      <created>1685348439636</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685348439636</updated>
+    </task>
+    <task id="LOCAL-00002" summary="3">
+      <created>1685348597708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685348597708</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2" />
+    <MESSAGE value="3" />
+    <option name="LAST_COMMIT_MESSAGE" value="3" />
   </component>
 </project>
