@@ -28,13 +28,9 @@
 <main class="container">
     <section>
         <h1>Overview of races!</h1>
+        <h5>Click on the races to show participating boats</h5>
+        <br>
         <div style="margin-bottom: 20px">
-            <button class="btn btn-primary" id="#">
-                    Race 1
-            </button>
-            <button class="btn btn-primary" id="##">
-                    Race 2
-            </button>
             <br>
         </div>
         <table class="table table-hover table-striped" id="tblSailRace">
@@ -43,10 +39,8 @@
                 <th scope="col">Race Id</th>
                 <th scope="col">Race Name</th>
                 <th scope="col">Date</th>
-                <th scope="col">SailBoat Id</th>
-                <th scope="col">SailBoat Name</th>
-                <th scope="col">Boat Type</th>
-                <th scope="col">Points</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody id="tblBodySailRace">
@@ -54,6 +48,63 @@
             </tbody>
         </table>
     </section>
+
+    <!-- MODAL TIL SAIL RACE -->
+    <div class="modal fade" id="sailRaceModal" tabindex="-1" aria-labelledby="sailRaceModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sailRaceModalTitle">Sailrace</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover table-striped" id="tblSailRaceModal">
+                        <thead class="table-primary">
+                        <tr>
+                            <th scope="col">SailBoat Id</th>
+                            <th scope="col">SailBoat Name</th>
+                            <th scope="col">Boat Type</th>
+                            <th scope="col">Points</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="tblBodySailRaceModal">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TIL AT GIVE POINT-->
+    <div class="modal fade" id="givePointsModal" tabindex="-1" aria-labelledby="givePointsModalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="givePointsModalTitle">Create Kandidat</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalFormGivePoints">
+                        <div class="mb-3">
+                            <label for="givePointsFormInput" class="col-form-label">Points:</label>
+                            <input name="navn" type="number" step="1" class="form-control" id="givePointsFormInput">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="givePointsModalButton">Give Points</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 </body>

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", runFetchAllSailBoats) // Når siden starter, så runner vi vores hovedmetode i vores script vi har kaldt runFetchAllKandidater.
+document.addEventListener("DOMContentLoaded", runFetchAllSailBoats) // Når siden starter, så runner vi vores hovedmetode i vores script vi har kaldt runFetchAllSailBoater.
 
 // Vi skaffer vores table body
 let tableBodySailBoats = document.querySelector("#tblBodySailBoats")
@@ -21,11 +21,11 @@ function fetchAlleSailBoats() {
     })
 }
 
-// Her fylder vi vores html tabel med kandidater
+// Her fylder vi vores html tabel med SailBoats
 function fillRowsInTable(sailBoat) {
     console.log(sailBoat)
     const tableRow = document.createElement("tr");
-    // Vi giver hver table row et unikt id som er kandidatRow-"id". Dette skal bruges til at slette hver row senere.
+    // Vi giver hver table row et unikt id som er SailBoatRow-"id". Dette skal bruges til at slette hver row senere.
     tableRow.id = `sailBoatRow-${sailBoat.id}`
 
     tableRow.innerHTML = `
@@ -38,18 +38,18 @@ function fillRowsInTable(sailBoat) {
         <td><button class="btn btn-primary" id="deleteSailBoatKnap-${sailBoat.id}" value="${sailBoat.id}">Delete</button></td>
         `;
 
-    // Vi appender én row ad gangen vi laver til vores tableBodyKandidater.
+    // Vi appender én row ad gangen vi laver til vores tableBodySailBoater.
     tableBodySailBoats.appendChild(tableRow);
 
-    // Vi laver en eventlistener på hver update knap der kalder addHiddenIdToInputField metoden, som adder kandidat id til et hidden form input felt
+    // Vi laver en eventlistener på hver update knap der kalder addHiddenIdToInputField metoden, som adder SailBoat id til et hidden form input felt
     document.querySelector(`#updateSailBoatKnap-${sailBoat.id}`).addEventListener('click', storeSailBoatIdGlobally)
 
 
     // Vi laver en eventListener på hver delete knap vi skaber.
-    document.querySelector(`#deleteSailBoatKnap-${sailBoat.id}`).addEventListener('click', deleteKandidat)
+    document.querySelector(`#deleteSailBoatKnap-${sailBoat.id}`).addEventListener('click', deleteSailBoat)
 }
 
-function deleteKandidat(event) {
+function deleteSailBoat(event) {
     const sailBoatId = event.target.value
     fetchAny(`sailboat/${sailBoatId}`, "DELETE", null).then(sailBoat => {
         alert(`sailboat med id: ${sailBoatId} og navn: ${sailBoat.name} er blevet slettet`);
@@ -79,7 +79,7 @@ function updateSailBoat() {
     const sailBoatId = sailBoatIdGlobal
     sailBoatObjekt.id = sailBoatId; // Vi sætter vores Objekts id til at være lig dette vores knaps id.
 
-    // Nu har vi de informationer vi skal bruge for at PUT vores kandidat. Vi indtaster url + fetchmetode + objekt vi gerne vil update.
+    // Nu har vi de informationer vi skal bruge for at PUT vores SailBoat. Vi indtaster url + fetchmetode + objekt vi gerne vil update.
     fetchAny("sailboat", "PUT", sailBoatObjekt).then(sailBoat => {
         console.log("Updated sailboat: ", sailBoat) // hvis det lykkedes log'er vi Sailboat.
         alert("Updated sailboat: " + sailBoatObjekt.name)
@@ -98,7 +98,7 @@ function createSailBoat() {
     const createModalForm = document.querySelector("#modalFormCreateSailBoat")
     const sailBoatObjekt = preparePlainFormData(createModalForm) // vi laver alt input fra formen om til et javascript objekt.
 
-    // Nu har vi de informationer vi skal bruge for at POST vores kandidat. Vi indtaster url + fetchmetode + objekt vi gerne vil update.
+    // Nu har vi de informationer vi skal bruge for at POST vores SailBoat. Vi indtaster url + fetchmetode + objekt vi gerne vil update.
     fetchAny("sailboat", "POST", sailBoatObjekt).then(sailBoat => {
         console.log("Created sailboat: ", sailBoat) // hvis det lykkedes log'er vi Sailboat.
         alert("Created sailboat: " + sailBoatObjekt.name)
