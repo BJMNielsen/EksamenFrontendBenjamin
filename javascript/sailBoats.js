@@ -47,27 +47,25 @@ function fillRowsInTable(sailBoat) {
 
     // Vi laver en eventListener på hver delete knap vi skaber.
     document.querySelector(`#deleteSailBoatKnap-${sailBoat.id}`).addEventListener('click', deleteKandidat)
+}
 
+function deleteKandidat(event) {
+    const sailBoatId = event.target.value
+    fetchAny(`sailboat/${sailBoatId}`, "DELETE", null).then(sailBoat => {
+        alert(`sailboat med id: ${sailBoatId} og navn: ${sailBoat.name} er blevet slettet`);
 
+        // Her bruger vi det unikke id hver table row har, til at få fat i vores row, og derefter slette det fra table body delen. På den måde er vores liste stadig sortet efter vi deleter elementer.
+        const rowToDelete = document.querySelector(`#sailBoatRow-${sailBoatId}`)
+        tableBodySailBoats.removeChild(rowToDelete);
 
-    function deleteKandidat(event) {
-        const sailBoatId = event.target.value
-        fetchAny(`sailboat/${sailBoatId}`, "DELETE", null).then(sailBoat => {
-            alert(`sailboat med id: ${sailBoatId} og navn: ${sailBoat.name} er blevet slettet`);
-
-            // Her bruger vi det unikke id hver table row har, til at få fat i vores row, og derefter slette det fra table body delen. På den måde er vores liste stadig sortet efter vi deleter elementer.
-            const rowToDelete = document.querySelector(`#sailBoatRow-${sailBoatId}`)
-            tableBodySailBoats.removeChild(rowToDelete);
-
-        }).catch(error => {
-            console.error(error)
-        })
-    }
+    }).catch(error => {
+        console.error(error)
+    })
 }
 
 let sailBoatIdGlobal;
 
-function storeSailBoatIdGlobally(event){
+function storeSailBoatIdGlobally(event) {
     sailBoatIdGlobal = event.target.value // vores event er knap trykket, og fordi knappen er givet value == sailboat id, kan vi får fat i id'et
     //document.querySelector("#updateIdFormHiddenInput").value = sailBoatId; // man kunne honestly også bare have gemt vores event.target.value i en global variabel her, i stedet for i et hidden field. Nok nemmere.
 }
@@ -75,7 +73,7 @@ function storeSailBoatIdGlobally(event){
 /////////////  UPDATE  /////////////
 document.querySelector("#updateSailBoatModalBtn").addEventListener('click', updateSailBoat)
 
-function updateSailBoat(){
+function updateSailBoat() {
     const updateModalForm = document.querySelector("#modalFormUpdateSailBoat")
     const sailBoatObjekt = preparePlainFormData(updateModalForm) // vi laver alt input fra formen om til et javascript objekt.
     const sailBoatId = sailBoatIdGlobal
@@ -96,7 +94,7 @@ function updateSailBoat(){
 document.querySelector("#createSailBoatModalBtn").addEventListener('click', createSailBoat)
 
 ////////////////  CREATE  /////////////
-function createSailBoat(){
+function createSailBoat() {
     const createModalForm = document.querySelector("#modalFormCreateSailBoat")
     const sailBoatObjekt = preparePlainFormData(createModalForm) // vi laver alt input fra formen om til et javascript objekt.
 
