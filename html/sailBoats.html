@@ -44,6 +44,7 @@
                 <th scope="col">Points</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody id="tblBodySailBoats">
@@ -118,6 +119,37 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="createSailBoatModalBtn">Create Kandidat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TIL SAIL RACEPARTICIPATION -->
+    <div class="modal fade" id="sailRaceParticipationModal" tabindex="-1" aria-labelledby="sailRaceParticipationModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sailRaceParticipationModalTitle">Sailrace</h1>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <br>
+                    <table class="table table-hover table-striped" id="tblSailRaceParticipationModal">
+                        <thead class="table-primary">
+                        <tr>
+                            <th scope="col">Race Id</th>
+                            <th scope="col">Race Name</th>
+                            <th scope="col">Points</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tblBodySailRaceParticipationModal">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

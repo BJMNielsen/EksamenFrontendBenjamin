@@ -30,6 +30,7 @@
         <h1>Overview of races!</h1>
         <h5>Click on the races to show participating boats</h5>
         <br>
+
         <div style="margin-bottom: 20px">
             <br>
         </div>
@@ -56,9 +57,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="sailRaceModalTitle">Sailrace</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <button type="button" class="btn btn-secondary" id="sailRaceAddParticipantModalButton" data-bs-toggle="modal"
+                            data-bs-target="#addParticipantModal">Add
+                        participant
+                    </button>
+                    <br>
+                    <br>
                     <table class="table table-hover table-striped" id="tblSailRaceModal">
                         <thead class="table-primary">
                         <tr>
@@ -66,6 +72,7 @@
                             <th scope="col">SailBoat Name</th>
                             <th scope="col">Boat Type</th>
                             <th scope="col">Points</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -82,25 +89,56 @@
     </div>
 
     <!-- MODAL TIL AT GIVE POINT-->
-    <div class="modal fade" id="givePointsModal" tabindex="-1" aria-labelledby="givePointsModalTitle" aria-hidden="true">
+    <div class="modal fade" id="givePointsModal" tabindex="-1" aria-labelledby="givePointsModalTitle"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="givePointsModalTitle">Create Kandidat</h1>
+                    <h1 class="modal-title fs-5" id="givePointsModalTitle">Give Points</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="modalFormGivePoints">
                         <div class="mb-3">
                             <label for="givePointsFormInput" class="col-form-label">Points:</label>
-                            <input name="navn" type="number" step="1" class="form-control" id="givePointsFormInput">
+                            <input name="points" type="number" step="1" class="form-control" id="givePointsFormInput">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" id="givePointsModalButton">Give Points</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL ADD PARTICIPANT-->
+    <div class="modal fade" id="addParticipantModal" tabindex="-1" aria-labelledby="addParticipantModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addParticipantModalTitle">Add participants</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalFormCreateParticipant">
+                        <div class="mb-3">
+                            <label for="createNameFormInput" class="col-form-label">Name:</label>
+                            <input name="name" type="text" class="form-control" id="createNameFormInput">
+                        </div>
+                        <div class="mb-3">
+                            <label for="createBoatTypeFormInput" class="col-form-label">Boat Type:</label>
+                            <input name="boatType" type="text" class="form-control" id="createBoatTypeFormInput">
                         </div>
 
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="givePointsModalButton">Give Points</button>
+                    <button type="button" class="btn btn-primary" id="createParticipantModalButton">Create</button>
                 </div>
             </div>
         </div>

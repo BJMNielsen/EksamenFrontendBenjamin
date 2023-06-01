@@ -36,6 +36,7 @@ function fillRowsInTable(sailBoat) {
        
         <td><button class="btn btn-primary" id="updateSailBoatKnap-${sailBoat.id}" value="${sailBoat.id}" data-bs-toggle="modal" data-bs-target="#updateSailBoatModal">Update</button></td>
         <td><button class="btn btn-primary" id="deleteSailBoatKnap-${sailBoat.id}" value="${sailBoat.id}">Delete</button></td>
+        <td><button class="btn btn-primary" id="raceParticipationKnap-${sailBoat.id}" value="${sailBoat.id}" data-bs-toggle="modal" data-bs-target="#sailRaceParticipationModal">Show Races</button></td>
         `;
 
     // Vi appender én row ad gangen vi laver til vores tableBodySailBoater.
@@ -47,6 +48,12 @@ function fillRowsInTable(sailBoat) {
 
     // Vi laver en eventListener på hver delete knap vi skaber.
     document.querySelector(`#deleteSailBoatKnap-${sailBoat.id}`).addEventListener('click', deleteSailBoat)
+
+    document.querySelector(`#raceParticipationKnap-${sailBoat.id}`).addEventListener('click', storeSailBoatIdGlobally)
+
+    document.querySelector(`#raceParticipationKnap-${sailBoat.id}`).addEventListener('click', fetchAllRacesFromSailBoatId)
+
+
 }
 
 function deleteSailBoat(event) {
@@ -68,6 +75,11 @@ let sailBoatIdGlobal;
 function storeSailBoatIdGlobally(event) {
     sailBoatIdGlobal = event.target.value // vores event er knap trykket, og fordi knappen er givet value == sailboat id, kan vi får fat i id'et
     //document.querySelector("#updateIdFormHiddenInput").value = sailBoatId; // man kunne honestly også bare have gemt vores event.target.value i en global variabel her, i stedet for i et hidden field. Nok nemmere.
+}
+
+document.querySelector("#updateSailBoatModalBtn").addEventListener('click', showRaceParticipationForBoat)
+function showRaceParticipationForBoat(){
+
 }
 
 /////////////  UPDATE  /////////////
@@ -106,4 +118,37 @@ function createSailBoat() {
     }).catch(error => {
         console.error(error) // hvis det fejler log'er vi error.
     })
+}
+
+let tblBodySailRaceModal = document.querySelector("#tblBodySailRaceParticipationModal")
+
+function fetchAllRacesFromSailBoatId(event) {
+    const sailBoatId = event.target.value
+    tblBodySailRaceModal.innerHTML = ''; // vi sletter lige alt i listen først
+    fetchAny(`raceparticipation/` + sailBoatId, "GET", null).then(races => {
+        // Vi fetcher Sailboats og hvis det er en success .then:
+        races.forEach(race => { // For hver sailboat i vores liste af sailboats gør vi følgende
+            console.log("Race Data:", race);
+            fillRowsInModalTableRaceParticipation(race)
+        })
+    }).catch(error => { // hvis vi får en error, catcher vi den og gør følgende:
+        console.error(error);
+    })
+}
+
+function fillRowsInModalTableRaceParticipation(raceData) {
+    console.log(raceData)
+
+    const tableRow = document.createElement("tr");
+    // Vi giver hver table row et unikt id som er SailRacesRow-"id". Dette skal bruges til at slette hver row senere.
+    tableRow.id = `sailRaceRow-${raceData.raceid}`
+    tableRow.innerHTML = `
+        <td>${raceData.raceId}</td>
+        <td>${raceData.raceName}</td>
+        <td>${raceData.points}</td>
+        
+        `;
+    // Vi appender én row ad gangen vi laver til vores tableBodySailRaces.
+    tblBodySailRaceModal.appendChild(tableRow)
+
 }
