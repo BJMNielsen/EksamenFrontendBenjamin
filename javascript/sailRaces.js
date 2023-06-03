@@ -156,6 +156,22 @@ function givePointsToParticipants() {
     })
 }
 
+document.querySelector("#createSailRaceModalBtn").addEventListener('click', createSailRace)
+
+////////////////  CREATE  /////////////
+function createSailRace() {
+    const createModalForm = document.querySelector("#modalFormCreateSailRace")
+    const sailRaceObjekt = preparePlainFormData(createModalForm) // vi laver alt input fra formen om til et javascript objekt.
+
+    // Nu har vi de informationer vi skal bruge for at POST vores SailBoat. Vi indtaster url + fetchmetode + objekt vi gerne vil update.
+    fetchAny("sailrace", "POST", sailRaceObjekt).then(sailRace => {
+        console.log("Created sailrace: ", sailRace) // hvis det lykkedes log'er vi Sailboat.
+        alert("Created sailrace: " + sailRaceObjekt.name)
+        window.location.reload()
+    }).catch(error => {
+        console.error(error) // hvis det fejler log'er vi error.
+    })
+}
 
 function deleteSailRaces(event) {
     const sailRaceId = event.target.value

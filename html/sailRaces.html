@@ -29,9 +29,11 @@
     <section>
         <h1>Overview of races!</h1>
         <br>
-        <div style="margin-bottom: 20px">
-            <br>
-        </div>
+        <button class="btn btn-primary" id="createSailRaceOpenModalButton" data-bs-toggle="modal"
+                data-bs-target="#createSailRaceModal">Create Race
+        </button>
+        <br>
+        <br>
         <table class="table table-hover table-striped" id="tblSailRace">
             <thead class="table-primary">
             <tr>
@@ -48,7 +50,7 @@
         </table>
     </section>
 
-    <!-- MODAL TIL SAIL RACE -->
+    <!-- MODAL TIL SAIL RACE participants -->
     <div class="modal fade" id="sailRaceModal" tabindex="-1" aria-labelledby="sailRaceModalTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -81,6 +83,35 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TIL CREATE SAIL RACE-->
+    <div class="modal fade" id="createSailRaceModal" tabindex="-1" aria-labelledby="createSailRaceModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createSailRaceModalTitle">Create SailBoat</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalFormCreateSailRace">
+                        <div class="mb-3">
+                            <label for="createRaceNameFormInput" class="col-form-label">Name:</label>
+                            <input name="name" type="text" class="form-control" id="createRaceNameFormInput">
+                        </div>
+                        <div class="mb-3">
+                            <label for="createRaceDateFormInput" class="col-form-label">Date:</label>
+                            <input name="sailRaceDate" type="date" class="form-control" id="createRaceDateFormInput">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="createSailRaceModalBtn">Create SailRace</button>
                 </div>
             </div>
         </div>
