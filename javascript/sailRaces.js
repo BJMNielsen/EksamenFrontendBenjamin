@@ -33,7 +33,7 @@ function fillRowsInTable(sailRace) {
         <td>${sailRace.name}</td>
         <td>${sailRace.sailRaceDate}</td>
        
-        <td><button class="btn btn-primary" id="vælgSailRaceKnap-${sailRace.id}" value="${sailRace.id}" data-bs-toggle="modal" data-bs-target="#sailRaceModal">Participants</button></td>
+        <td><button class="btn btn-primary" id="participants-${sailRace.id}" value="${sailRace.id}" data-bs-toggle="modal" data-bs-target="#sailRaceModal">Participants</button></td>
         <td><button class="btn btn-primary" id="deleteSailRaceKnap-${sailRace.id}" value="${sailRace.id}">Delete</button></td>
         `;
 
@@ -41,12 +41,14 @@ function fillRowsInTable(sailRace) {
     tableBodySailBoats.appendChild(tableRow);
 
     // Vi laver en eventlistener på hver update knap der kalder addHiddenIdToInputField metoden, som adder SailRaces id til et hidden form input felt
-    document.querySelector(`#vælgSailRaceKnap-${sailRace.id}`).addEventListener('click', fetchAllSailBoatsInRace)
+    document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', fetchAllSailBoatsInRace)
 
     // Vi laver en eventListener på hver delete knap vi skaber.
     document.querySelector(`#deleteSailRaceKnap-${sailRace.id}`).addEventListener('click', deleteSailRaces)
 
-    document.querySelector(`#vælgSailRaceKnap-${sailRace.id}`).addEventListener('click', storeSailRaceIdGlobally)
+    document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', storeSailRaceIdGlobally)
+
+    document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', fillDropDownWithSailBoats)
 }
 
 let sailRaceIdGlobal;
@@ -124,13 +126,7 @@ function storeSailBoatIdGlobally(event) {
 document.querySelector("#givePointsModalButton").addEventListener('click', givePointsToParticipants)
 
 function givePointsToParticipants() {
-    /*
-    let sailboat = fetchAny("sailboat/" + sailBoatIdGlobal, "GET", null).then(sailBoat => {
-        console.log("Fetched: ", sailBoat) // hvis det lykkedes log'er vi sailboat.
-    }).catch(error => {
-        console.error(error) // hvis det fejler log'er vi error.
-    })
-    */
+
     const sailBoatObjectIdAndPoints = {
         id: null, // Replace `boatId` with the actual boat ID you want to update
         points: null // Replace `newPoints` with the new points value from the form input
@@ -158,7 +154,7 @@ function givePointsToParticipants() {
 
 document.querySelector("#createSailRaceModalBtn").addEventListener('click', createSailRace)
 
-////////////////  CREATE  /////////////
+////////////////  CREATE A SAILRACE /////////////
 function createSailRace() {
     const createModalForm = document.querySelector("#modalFormCreateSailRace")
     const sailRaceObjekt = preparePlainFormData(createModalForm) // vi laver alt input fra formen om til et javascript objekt.
@@ -186,6 +182,35 @@ function deleteSailRaces(event) {
         console.error(error)
     })
 }
+
+const sailboat = {
+    name: "My Sailboat",
+    boatType: "Cruiser"
+};
+
+// FYLD DROPDOWN MED SAILBOATS THAT CAN BE PICKED TO PARTICIPATE ///
+async function fillDropDownWithSailBoats(){
+    try {
+        const sailBoats = await fetchAny("sailboats", "GET", null);
+
+        const ddSailBoatParticipants = document.querySelector("#dd-sailRace-Participants")
+        ddSailBoatParticipants.innerHTML = ""
+
+        for (let sailBoat of sailBoats) {
+        const sailBoatOption = document.createElement("option")
+        sailBoatOption.textContent = sailBoat.name
+        ddSailBoatParticipants.appendChild(sailBoatOption)
+            return sailBoat;
+        }
+    } catch (error) {
+        console.error("Had an error while trying to set up the Sailboat form.")
+        console.error(error)
+    }
+}
+
+
+
+
 
 
 document.querySelector("#createParticipantModalButton").addEventListener('click', createParticipants)

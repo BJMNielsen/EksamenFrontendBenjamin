@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f24e2da-088d-4242-aa91-b8a207010e76" name="Changes" comment="4">
+    <list default="true" id="7f24e2da-088d-4242-aa91-b8a207010e76" name="Changes" comment="Create Race">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/sailBoats.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sailBoats.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/sailRaces.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sailRaces.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/javascript/sailRaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/sailRaces.js" afterDir="false" />
     </list>
@@ -100,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685353963242</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Create Race">
+      <created>1685794128979</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685794128979</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +116,7 @@
     <MESSAGE value="2" />
     <MESSAGE value="3" />
     <MESSAGE value="4" />
-    <option name="LAST_COMMIT_MESSAGE" value="4" />
+    <MESSAGE value="Create Race" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Race" />
   </component>
 </project>
