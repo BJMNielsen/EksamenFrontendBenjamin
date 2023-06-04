@@ -41,7 +41,7 @@ function fillRowsInTable(sailRace) {
     tableBodySailBoats.appendChild(tableRow);
 
     // Vi laver en eventlistener på hver update knap der kalder addHiddenIdToInputField metoden, som adder SailRaces id til et hidden form input felt
-    document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', fetchAllSailBoatsInRace)
+    document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', fetchAllParticipantsInRace)
 
     // Vi laver en eventListener på hver delete knap vi skaber.
     document.querySelector(`#deleteSailRaceKnap-${sailRace.id}`).addEventListener('click', deleteSailRaces)
@@ -51,27 +51,19 @@ function fillRowsInTable(sailRace) {
     document.querySelector(`#participants-${sailRace.id}`).addEventListener('click', fillDropDownWithSailBoats)
 }
 
-/*
-let sailRaceIdGlobal;
 
-function storeSailRaceIdGlobally(event) {
-    sailRaceIdGlobal = event.target.value // vores event er knap trykket, og fordi knappen er givet value == sailboat id, kan vi får fat i id'et
-    //document.querySelector("#updateIdFormHiddenInput").value = sailBoatId; // man kunne honestly også bare have gemt vores event.target.value i en global variabel her, i stedet for i et hidden field. Nok nemmere.
-}
-
- */
-
-
-function fetchAllSailBoatsInRace(event) {
+function fetchAllParticipantsInRace(event) {
 
     const raceIdFromParticipantButton = event.target.value
+    "/boats/race/"
 
     tblBodySailRaceModal.innerHTML = ''; // vi sletter lige alt i listen først
-    fetchAny(`boats/race/` + raceIdFromParticipantButton, "GET", null).then(raceParticipationsFromSpecificRace => {
+    fetchAny(`raceparticipations/race/` + raceIdFromParticipantButton, "GET", null).then(raceparticipations => {
         document.querySelector("#tblBodySailRaceModal").innerHTML = ""
-        console.log(raceParticipationsFromSpecificRace)
-        // Vi fetcher Sailboats og hvis det er en success .then:
-        raceParticipationsFromSpecificRace.forEach(raceParticipation => { // For hver sailboat i vores liste af sailboats gør vi følgende
+        console.log(raceparticipations)
+
+        // Vi fetcher participants og hvis det er en success .then:
+        raceparticipations.forEach(raceParticipation => { // For hver sailboat i vores liste af sailboats gør vi følgende
             fillRowsInShowParticipantsModalTable(raceParticipation)
         })
     }).catch(error => { // hvis vi får en error, catcher vi den og gør følgende:
@@ -89,22 +81,24 @@ function fillRowsInShowParticipantsModalTable(raceParticipation) {
     tableRow.id = `participantRow-${raceParticipation.id}`
     // TODO FIKS points
     tableRow.innerHTML = `
-        <td>${raceParticipation.sailBoatId}</td>
-        <td>${raceParticipation.sailBoatName}</td>
-        <td>${raceParticipation.boatType}</td>
+        <td>${raceParticipation.id}</td>
+        <td>${raceParticipation.sailBoat.id}</td>
+        <td>${raceParticipation.sailBoat.name}</td>
+        <td>${raceParticipation.sailBoat.boatType}</td>
         <td>${raceParticipation.points}</td> 
-        <td><button class="btn btn-primary" id="givePointsButton-${raceParticipation.sailBoatId}" value="${raceParticipation.sailBoatId}" data-bs-toggle="modal" data-bs-target="#givePointsModal">Give Points</button></td>
+        <td><button class="btn btn-primary" id="givePointsButton-${raceParticipation.id}" value="${raceParticipation.id}" data-bs-toggle="modal" data-bs-target="#givePointsModal">Assign Points</button></td>
         <td><button class="btn btn-primary" id="deleteParticipantButton-${raceParticipation.id}" value="${raceParticipation.id}">Delete</button></td>
         `;
     // Vi appender én row ad gangen vi laver til vores tableBodySailRaces.
     let tblBodySailRaceModal = document.querySelector("#tblBodySailRaceModal")
     tblBodySailRaceModal.appendChild(tableRow);
 
-    //document.querySelector(`#givePointsButton-${raceParticipation.id}`).addEventListener('click', storeSailBoatIdGlobally) // TODO FIKS SÅ DEN GIVER KORREKT POINT
+    document.querySelector(`#givePointsButton-${raceParticipation.id}`).addEventListener('click', storeRaceParticipationIdInModalBtn) // TODO FIKS SÅ DEN GIVER KORREKT POINT
 
-    document.querySelector(`#deleteParticipantButton-${raceParticipation.raceParticipationId}`).addEventListener('click', deleteParticipant)
+    document.querySelector(`#deleteParticipantButton-${raceParticipation.id}`).addEventListener('click', deleteParticipant)
 
 }
+
 //TODO FIKS DELETE SAIL PARTICIPANT
 function deleteParticipant(event) {
     const participantId = event.target.value
@@ -121,10 +115,11 @@ function deleteParticipant(event) {
 }
 
 
-let sailBoatIdGlobal;
 
-function storeSailBoatIdGlobally(event) {
-    sailBoatIdGlobal = event.target.value // vores event er knap trykket, og fordi knappen er givet value == sailboat id, kan vi får fat i id'et
+
+function storeRaceParticipationIdInModalBtn(event) {
+    document.querySelector("#givePointsModalButton").value = event.target.value;
+    // vores event er knap trykket, og fordi knappen er givet value == sailboat id, kan vi får fat i id'et
     //document.querySelector("#updateIdFormHiddenInput").value = sailBoatId; // man kunne honestly også bare have gemt vores event.target.value i en global variabel her, i stedet for i et hidden field. Nok nemmere.
 }
 
@@ -132,27 +127,20 @@ function storeSailBoatIdGlobally(event) {
 // GIVE POINTS TO PARTICIPANT ////
 document.querySelector("#givePointsModalButton").addEventListener('click', givePointsToParticipants)
 
-function givePointsToParticipants() {
+function givePointsToParticipants(event) {
 
-    const sailBoatObjectIdAndPoints = {
-        id: null, // Replace `boatId` with the actual boat ID you want to update
-        points: null // Replace `newPoints` with the new points value from the form input
-    };
-    console.log("SAILBOAT ID: " + sailBoatIdGlobal)
+    const participantID = event.target.value
+    console.log("HER ER RACE PARTICIPANT ID", participantID)
+
     const updatePointsModalForm = document.querySelector("#modalFormGivePoints");
-    const sailBoatObject = preparePlainFormData(updatePointsModalForm);
-    sailBoatObject.id = sailBoatIdGlobal;
-    sailBoatObjectIdAndPoints.id = sailBoatObject.id
-    sailBoatObjectIdAndPoints.points = sailBoatObject.points
+    // Vores participant object har kun points lige nu
+    const participationObject = preparePlainFormData(updatePointsModalForm);
+    // Vi adder nu vores participant ID til den.
+    participationObject.id = participantID;
 
-    console.log("Sailboat id :" + sailBoatObjectIdAndPoints.id)
-
-    //sailBoatObject.id = sailBoatObjectData.id
-    console.log("SAILBOAT OBJECT ID" + sailBoatObject.id)
-
-    fetchAny("sailboat", "PUT", sailBoatObjectIdAndPoints).then(sailBoat => {
-        console.log("Added points to: ", sailBoat) // hvis det lykkedes log'er vi sailboat.
-        alert("Added points to: " + sailBoat.name)
+    fetchAny("raceparticipation", "PUT", participationObject).then(participant => {
+        console.log("Added points to: ", participant) // hvis det lykkedes log'er vi sailboat.
+        alert("Added points to: " + participant.sailBoat.name)
         window.location.reload()
     }).catch(error => {
         console.error(error) // hvis det fejler log'er vi error.
@@ -247,10 +235,14 @@ async function createParticipant() {
         }
 
         const postedParticipant = await fetchAny("raceparticipation", "POST", newParticipant);
-        console.log("Created race participantion for boat: ", postedParticipant) // brug komma for at kunne se objketet, hvis vi bruger + viser den bare objekt objekt (som en string), i stedet for det reelle objekt.
-        alert("Created race participantion for boat: " + postedParticipant.sailBoat.name + " and for the race: " + newParticipant.sailRace.name);
+        console.log("Created race participation for boat: ", postedParticipant) // brug komma for at kunne se objketet, hvis vi bruger + viser den bare objekt objekt (som en string), i stedet for det reelle objekt.
+        alert("Created race participation for boat: " + postedParticipant.sailBoat.name + " and for the race: " + newParticipant.sailRace.name);
         console.log(document.querySelector(`#participants-${sailRaceId}`))
-        document.querySelector("#closeKnapParticipantModal").click()
+
+        const addedParticipant = await fetchAny(`raceparticipation/${postedParticipant.id}`, "GET", null);
+        
+        //TODO MAKE MODAL REFRESH, COULDNT WITH ADDED LINES.
+        // fillRowsInShowParticipantsModalTable(addedParticipant);
 
     } catch (error) {
         console.error(error)

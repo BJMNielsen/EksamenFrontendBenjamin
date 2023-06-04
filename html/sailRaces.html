@@ -70,6 +70,7 @@
                     <table class="table table-hover table-striped" id="tblSailRaceModal">
                         <thead class="table-primary">
                         <tr>
+                            <th scope="col">Participant Id</th>
                             <th scope="col">SailBoat Id</th>
                             <th scope="col">SailBoat Name</th>
                             <th scope="col">Boat Type</th>
@@ -132,7 +133,7 @@
                     <form id="modalFormGivePoints">
                         <div class="mb-3">
                             <label for="givePointsFormInput" class="col-form-label">Points:</label>
-                            <input name="points" type="number" step="1" class="form-control" id="givePointsFormInput">
+                            <input name="points" type="number" min="0" step="1" class="form-control" id="givePointsFormInput">
                         </div>
                     </form>
                 </div>

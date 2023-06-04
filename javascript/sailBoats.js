@@ -32,7 +32,6 @@ function fillRowsInTable(sailBoat) {
         <td>${sailBoat.id}</td>
         <td>${sailBoat.name}</td>
         <td>${sailBoat.boatType}</td>
-        <td>${sailBoat.points}</td>
        
         <td><button class="btn btn-primary" id="updateSailBoatKnap-${sailBoat.id}" value="${sailBoat.id}" data-bs-toggle="modal" data-bs-target="#updateSailBoatModal">Update</button></td>
         <td><button class="btn btn-primary" id="deleteSailBoatKnap-${sailBoat.id}" value="${sailBoat.id}">Delete</button></td>
@@ -125,30 +124,26 @@ let tblBodySailRaceModal = document.querySelector("#tblBodySailRaceParticipation
 function fetchAllRacesFromSailBoatId(event) {
     const sailBoatId = event.target.value
     tblBodySailRaceModal.innerHTML = ''; // vi sletter lige alt i listen først
-    fetchAny(`raceparticipation/` + sailBoatId, "GET", null).then(races => {
+    fetchAny(`raceparticipations/boat/` + sailBoatId, "GET", null).then(raceParticipations => {
         // Vi fetcher Sailboats og hvis det er en success .then:
-        races.forEach(race => { // For hver sailboat i vores liste af sailboats gør vi følgende
-            console.log("Race Data:", race);
-            fillRowsInModalTableRaceParticipation(race)
+        raceParticipations.forEach(raceparticipation => { // For hver sailboat i vores liste af sailboats gør vi følgende
+            fillRowsInModalTableRaceParticipation(raceparticipation)
         })
     }).catch(error => { // hvis vi får en error, catcher vi den og gør følgende:
         console.error(error);
     })
 }
 
-function fillRowsInModalTableRaceParticipation(raceData) {
-    console.log(raceData)
-
+function fillRowsInModalTableRaceParticipation(raceParticipation) {
     const tableRow = document.createElement("tr");
     // Vi giver hver table row et unikt id som er SailRacesRow-"id". Dette skal bruges til at slette hver row senere.
-    tableRow.id = `sailRaceRow-${raceData.raceid}`
+    tableRow.id = `sailRaceRow-${raceParticipation.id}`
     tableRow.innerHTML = `
-        <td>${raceData.raceId}</td>
-        <td>${raceData.raceName}</td>
-        <td>${raceData.points}</td>
+        <td>${raceParticipation.sailRace.id}</td>
+        <td>${raceParticipation.sailRace.name}</td>
+        <td>${raceParticipation.points}</td>
         
         `;
     // Vi appender én row ad gangen vi laver til vores tableBodySailRaces.
     tblBodySailRaceModal.appendChild(tableRow)
-
 }
