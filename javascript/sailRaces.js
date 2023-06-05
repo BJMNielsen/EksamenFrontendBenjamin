@@ -23,7 +23,7 @@ function fetchAlleSailRaces() {
 
 // Her fylder vi vores html tabel med SailRaces
 function fillRowsInTable(sailRace) {
-    console.log(sailRace)
+    //console.log(sailRace)
     const tableRow = document.createElement("tr");
     // Vi giver hver table row et unikt id som er SailRacesRow-"id". Dette skal bruges til at slette hver row senere.
     tableRow.id = `sailRaceRow-${sailRace.id}`
@@ -60,7 +60,7 @@ function fetchAllParticipantsInRace(event) {
     tblBodySailRaceModal.innerHTML = ''; // vi sletter lige alt i listen først
     fetchAny(`raceparticipations/race/` + raceIdFromParticipantButton, "GET", null).then(raceparticipations => {
         document.querySelector("#tblBodySailRaceModal").innerHTML = ""
-        console.log(raceparticipations)
+        //console.log(raceparticipations)
 
         // Vi fetcher participants og hvis det er en success .then:
         raceparticipations.forEach(raceParticipation => { // For hver sailboat i vores liste af sailboats gør vi følgende
@@ -74,7 +74,7 @@ function fetchAllParticipantsInRace(event) {
 
 // Vores MODAL til når vi trykker "Participants", dvs den der viser participants for et bestemt ræs
 function fillRowsInShowParticipantsModalTable(raceParticipation) {
-    console.log(raceParticipation)
+    //console.log(raceParticipation)
 
     const tableRow = document.createElement("tr");
     // Vi giver hver table row et unikt id som er SailRacesRow-"id". Dette skal bruges til at slette hver row senere.
@@ -240,7 +240,7 @@ async function createParticipant() {
         console.log(document.querySelector(`#participants-${sailRaceId}`))
 
         const addedParticipant = await fetchAny(`raceparticipation/${postedParticipant.id}`, "GET", null);
-        
+
         //TODO MAKE MODAL REFRESH, COULDNT WITH ADDED LINES.
         // fillRowsInShowParticipantsModalTable(addedParticipant);
 

@@ -17,14 +17,14 @@ function createRequest(method, entity) {
 // Dette er en metode, de andre metoder bruger til at hente enten noget Json eller et Error object
 async function fetchResponse(url, request) {
     let errorMessage;
-    console.log(`Will try to fetch a response from the URL: ${url} using the Request Object:`, request)
+    // console.log(`Will try to fetch a response from the URL: ${url} using the Request Object:`, request)
     try {
         // Vi fetcher et objekt
         let responseEntity = await fetch(url, request)
-        console.log(`It was a success reaching the URL: ${url} and we received the Response Entity:`, responseEntity)
+        // console.log(`It was a success reaching the URL: ${url} and we received the Response Entity:`, responseEntity)
         // Vi laver vores objekt om til Json
         let responseData = await responseEntity.json()
-        console.log(`It was possible to pull the following data and convert it to Json from the response the Data Object:`, responseData)
+        // console.log(`It was possible to pull the following data and convert it to Json from the response the Data Object:`, responseData)
 
         //Hvis response er ok, returner vi responsedataen.
         if (responseEntity.ok) {
