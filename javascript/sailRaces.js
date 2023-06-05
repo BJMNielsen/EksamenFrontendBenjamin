@@ -239,7 +239,7 @@ async function createParticipant() {
         alert("Created race participation for boat: " + postedParticipant.sailBoat.name + " and for the race: " + newParticipant.sailRace.name);
         console.log(document.querySelector(`#participants-${sailRaceId}`))
 
-        const addedParticipant = await fetchAny(`raceparticipation/${postedParticipant.id}`, "GET", null);
+        //const addedParticipant = await fetchAny(`raceparticipation/${postedParticipant.id}`, "GET", null);
 
         //TODO MAKE MODAL REFRESH, COULDNT WITH ADDED LINES.
         // fillRowsInShowParticipantsModalTable(addedParticipant);
