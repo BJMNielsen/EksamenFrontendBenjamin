@@ -2,10 +2,16 @@
     font-family: Epil;
 }
 
-.nav-link{
+.nav-link {
     font-size: 10px;
 }
 
-.navbar{
+.navbar {
     width: 100%;
+}
+
+
+footer {
+    background: linear-gradient(to bottom, white, #e6e6e6);
+    margin-top: 100px;
 }

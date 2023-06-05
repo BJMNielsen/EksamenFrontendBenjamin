@@ -55,7 +55,7 @@ function fillRowsInTable(sailRace) {
 function fetchAllParticipantsInRace(event) {
 
     const raceIdFromParticipantButton = event.target.value
-    "/boats/race/"
+    //"/boats/race/"
 
     tblBodySailRaceModal.innerHTML = ''; // vi sletter lige alt i listen først
     fetchAny(`raceparticipations/race/` + raceIdFromParticipantButton, "GET", null).then(raceparticipations => {
@@ -79,7 +79,7 @@ function fillRowsInShowParticipantsModalTable(raceParticipation) {
     const tableRow = document.createElement("tr");
     // Vi giver hver table row et unikt id som er SailRacesRow-"id". Dette skal bruges til at slette hver row senere.
     tableRow.id = `participantRow-${raceParticipation.id}`
-    // TODO FIKS points
+    // TODO Her har jeg lavet noget nyt
     tableRow.innerHTML = `
         <td>${raceParticipation.id}</td>
         <td>${raceParticipation.sailBoat.id}</td>
@@ -99,7 +99,7 @@ function fillRowsInShowParticipantsModalTable(raceParticipation) {
 
 }
 
-//TODO FIKS DELETE SAIL PARTICIPANT
+////TODO Her har jeg lavet noget nyt
 function deleteParticipant(event) {
     const participantId = event.target.value
     fetchAny(`raceparticipation/${participantId}`, "DELETE", null).then(participant => {
@@ -123,7 +123,7 @@ function storeRaceParticipationIdInModalBtn(event) {
     //document.querySelector("#updateIdFormHiddenInput").value = sailBoatId; // man kunne honestly også bare have gemt vores event.target.value i en global variabel her, i stedet for i et hidden field. Nok nemmere.
 }
 
-
+//TODO Her har jeg lavet noget nyt
 // GIVE POINTS TO PARTICIPANT ////
 document.querySelector("#givePointsModalButton").addEventListener('click', givePointsToParticipants)
 
